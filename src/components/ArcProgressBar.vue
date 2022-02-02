@@ -17,6 +17,8 @@
       </svg>
     </div>
     <div>
+      {{perimeter}}
+      <input v-model="diameter" type="number">
       <input v-model="progress" type="number">
       <input v-model="weight" type="number">
       <input v-model="bgColor" type="text">
@@ -35,7 +37,7 @@ export default {
     weight: { type: Number, default: 5 }, // weight // 4. ширина
     bgColor: { type: String, default: '#e5e9f2' },// bgColor // 5.
     lineColor: { type: String, default: '#f56c6c' },// lineColor // 6.
-    // arcSize // 7. ???
+    visiblePartOfCircle: { type: Number, default: 30 } // 7.
     // угол поворота?? // 8.
     // animate default linear // 9.
     // animateSpeed // 10.
@@ -44,30 +46,31 @@ export default {
   },
   data() {
     return {
-      progress: 70,
+      progress: 0,
       offset: 30
     }
   },
   computed: {
-    radius() {
-      return this.diameter / 2 - this.offset
-    },
     perimeter() {
-      return 2 * Math.PI * this.radius
+      return Math.PI * this.diameter
     },
     progressPathStyles() {
+      const offset = (100 - this.visiblePartOfCircle) / 2
+      const dashoffset = (offset / 100) * 295
+      const dasharray = 295 - (dashoffset * 2)
       return {
-        strokeDasharray: `${(this.diameter - 7) * (this.progress / 100) }px, ${this.perimeter}px`,
-        strokeDashoffset: '0px',
+        strokeDasharray: `${dasharray * this.progress / 100}, ${this.perimeter}`,//`${(this.diameter - 7) * (this.progress / 100) }px, ${this.perimeter}px`,
+        strokeDashoffset: -dashoffset,
         transition: 'stroke-dasharray 0.6s ease 0s, stroke 0.6s ease'
       }
     },
     bgStyles() {
+      const offset = (100 - this.visiblePartOfCircle) / 2
+      const dashoffset = (offset / 100) * 295
+      const dasharray = 295 - (dashoffset * 2)
       return {
-        strokeDasharray: `100px, 0px`,
-        strokeDashoffset: '0px',
-        // stroke-dasharray: 221.482px, 295.31px;
-      // stroke-dashoffset: -36.9137px;
+        strokeDasharray: `${dasharray}, ${this.perimeter}`,
+        strokeDashoffset: -dashoffset
       }
     },
     bgPath() {
