@@ -1,29 +1,25 @@
 <template>
-  <div>
-    <div class="arc-progress-bar"
-         :style="{ width: `${diameter}px`, height: `${diameter}px` }">
-      <svg viewBox="0 0 100 100">
-        <path :d="bgPath"
-              :stroke="bgColor"
-              :stroke-width="weight"
-              fill="none"
-              :style="bgStyles"/>
-        <path :d="progressPath"
-              :stroke="lineColor"
-              fill="none"
-              stroke-linecap="round"
-              :stroke-width="weight"
-              :style="progressPathStyles"/>
-      </svg>
-    </div>
-    <div>
-      {{perimeter}}
-      <input v-model="diameter" type="number">
-      <input v-model="progress" type="number">
-      <input v-model="weight" type="number">
-      <input v-model="bgColor" type="text">
-      <input v-model="lineColor" type="text">
-    </div>
+  <div class="arc-progress-bar"
+       :style="{ width: `${diameter}px`, height: `${diameter}px` }">
+    <svg viewBox="0 0 100 100">
+      <path d="M 50 50
+               m 0 47
+               a 47 47 0 1 1 0 -94
+               a 47 47 0 1 1 0 94"
+            :stroke="bgColor"
+            :stroke-width="weight"
+            fill="none"
+            :style="bgStyles"/>
+      <path d="M 50 50
+               m 0 47
+               a 47 47 0 1 1 0 -94
+               a 47 47 0 1 1 0 94"
+            :stroke="lineColor"
+            fill="none"
+            stroke-linecap="round"
+            :stroke-width="weight"
+            :style="progressPathStyles"/>
+    </svg>
   </div>
 </template>
 
@@ -32,7 +28,7 @@ export default {
   name: 'arc-progress-bar',
   props: {
     diameter: { type: Number, default: 300 }, // 1.
-    // progress: { type: Number, default: 70 } // 2.
+    progress: { type: Number, default: 70 }, // 2.
     // maxValue // 3.
     weight: { type: Number, default: 5 }, // weight // 4. ширина
     bgColor: { type: String, default: '#e5e9f2' },// bgColor // 5.
@@ -44,12 +40,6 @@ export default {
     // отображать progress // 11.
     // позиция счетчика (внутри/снизу) // 12.
   },
-  data() {
-    return {
-      progress: 0,
-      offset: 30
-    }
-  },
   computed: {
     perimeter() {
       return Math.PI * this.diameter
@@ -59,7 +49,7 @@ export default {
       const dashoffset = (offset / 100) * 295
       const dasharray = 295 - (dashoffset * 2)
       return {
-        strokeDasharray: `${dasharray * this.progress / 100}, ${this.perimeter}`,//`${(this.diameter - 7) * (this.progress / 100) }px, ${this.perimeter}px`,
+        strokeDasharray: `${dasharray * this.progress / 100}, ${this.perimeter}`,
         strokeDashoffset: -dashoffset,
         transition: 'stroke-dasharray 0.6s ease 0s, stroke 0.6s ease'
       }
@@ -72,18 +62,6 @@ export default {
         strokeDasharray: `${dasharray}, ${this.perimeter}`,
         strokeDashoffset: -dashoffset
       }
-    },
-    bgPath() {
-      return `M 50 50
-              m 0 47
-              a 47 47 0 1 1 0 -94
-              a 47 47 0 1 1 0 94`
-    },
-    progressPath() {
-      return `M 50 50
-              m 0 47
-              a 47 47 0 1 1 0 -94
-              a 47 47 0 1 1 0 94`
     }
   }
 }
