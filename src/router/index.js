@@ -8,6 +8,10 @@ const routes = [
     path: '/',
     component: () => import('@/components/baseWrapper/BaseWrapper'),
     children: [{
+      path: '/task1',
+      name: 'task1',
+      component: () => import('@/views/task1/Task1')
+    }, {
       path: '/task2',
       name: 'task2',
       component: () => import('@/views/task2/Task2')
