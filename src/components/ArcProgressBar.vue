@@ -31,18 +31,16 @@
 export default {
   name: 'arc-progress-bar',
   props: {
-    diameter: { type: Number, default: 300 }, // 1.
-    progress: { type: Number, default: 70 }, // 2.
-    maxProgress: { type: Number, default: 100 }, // maxValue // 3.
-    weight: { type: Number, default: 5 }, // weight // 4. ширина
-    bgColor: { type: String, default: '#e5e9f2' },// bgColor // 5.
-    lineColor: { type: String, default: '#f56c6c' },// lineColor // 6.
-    visiblePartOfCircle: { type: Number, default: 100 }, // 7.
-    // угол поворота?? // 8.
-    // animate default linear // 9.
-    // animateSpeed // 10.
-    // +++++ отображать progress // 11. +++++
-    counterPosition: { type: String, default: 'center' }, // center or bottom // 12.
+    diameter: { type: Number, default: 300 },
+    progress: { type: Number, default: 70 },
+    maxProgress: { type: Number, default: 100 },
+    weight: { type: Number, default: 5 },
+    bgColor: { type: String, default: '#e5e9f2' },
+    lineColor: { type: String, default: '#f56c6c' },
+    visiblePartOfCircle: { type: Number, default: 100 },
+    transitionTimingFunction: { type: String, default: 'linear' },
+    transitionSpeed: { type: String, default: '200ms' },
+    counterPosition: { type: String, default: 'center' }
   },
   computed: {
     value() {
@@ -62,7 +60,8 @@ export default {
       return {
         strokeDasharray: `${dasharray * this.value / 100}, ${this.perimeter}`,
         strokeDashoffset: -dashoffset,
-        transition: 'stroke-dasharray 0.6s ease 0s, stroke 0.6s ease'
+        transition: `stroke-dasharray ${this.transitionSpeed} ease 0s, stroke ${this.transitionSpeed} ease`,
+        transitionTimingFunction: this.transitionTimingFunction
       }
     },
     bgStyles() {

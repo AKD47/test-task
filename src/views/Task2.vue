@@ -9,7 +9,9 @@
           :weight="weight"
           :visible-part-of-circle="visiblePartOfCircle"
           :max-progress="maxProgress"
-          :counter-position="counterPosition"/>
+          :counter-position="counterPosition"
+          :transition-speed="transitionSpeed"
+          :transition-timing-function="transitionTimingFunction"/>
     </div>
     <div class="task2__actions">
 
@@ -61,6 +63,12 @@
         </div>
       </div>
 
+      <base-input v-model="transitionSpeed"
+                  label="Скорость анимации"/>
+
+      <base-input v-model="transitionTimingFunction"
+                  label="Функция анимации"/>
+
     </div>
   </div>
 </template>
@@ -82,10 +90,9 @@ export default {
       lineColor: '#f56c6c',
       visiblePartOfCircle: 70,
       maxProgress: 100,
-      // animate default linear // 9.
-      // animateSpeed // 10.
-      // отображать progress // 11.
-      counterPosition: 'center' // 12.
+      transitionSpeed: '500ms',
+      transitionTimingFunction: 'linear',
+      counterPosition: 'center'
     }
   }
 }
