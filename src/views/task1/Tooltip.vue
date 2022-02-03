@@ -5,17 +5,17 @@
     <div class="tooltip__body"
          v-if="isShown">
       <span :style="trianglePosition"></span>
-      <v-card :card-data="cardData"/>
+      <card :card-data="cardData"/>
     </div>
   </div>
 </template>
 
 <script>
-import VCard from "./Card";
+import Card from "./Card";
 
 export default {
-  name: "v-tooltip",
-  components: {VCard},
+  name: "tooltip",
+  components: { Card },
   data() {
     return {
       isShown: false,

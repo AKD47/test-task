@@ -1,32 +1,22 @@
 <template>
   <div class="list">
-
     <div class="list__sort-button">
       <button type="button"
               @click="sortList">Sort</button>
     </div>
-
     <div class="list__content"
          @scroll="handleScroll"
          ref="listContent">
-
-
-<!--      @mouseenter="showTooltip(card); setPosition($event);"-->
-<!--      @mouseleave="hideTooltip"-->
-<!--      @click="addToRightColumn(card, index)"-->
-
       <ul>
         <li v-for="(card, index) in list"
-            :key="card.number">
+            :key="card.number"
+            @mouseenter="showTooltip($event, card)"
+            @mouseleave="$emit('hide-tooltip', $event)">
           <card :card-data="card"
                 :sss="index"
                 @click.native="clickCard(index)"/>
         </li>
       </ul>
-
-
-
-
     </div>
   </div>
 </template>
@@ -41,6 +31,11 @@ export default {
     list: { type: Array, default: () => [] }
   },
   methods: {
+    showTooltip($event, card) {
+      this.$emit('show-tooltip', {
+        $event, card
+      })
+    },
     sortList() {
 
     },
@@ -50,7 +45,6 @@ export default {
       }
     },
     clickCard(index) {
-      console.log(index)
       this.$emit('move-card', index)
     }
   }
