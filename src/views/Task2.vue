@@ -8,7 +8,8 @@
           :line-color="lineColor"
           :weight="weight"
           :visible-part-of-circle="visiblePartOfCircle"
-          :max-progress="maxProgress"/>
+          :max-progress="maxProgress"
+          :counter-position="counterPosition"/>
     </div>
     <div class="task2__actions">
 
@@ -44,6 +45,22 @@
                          :step="5"
                          :min="0" :max="100"/>
 
+      <div style="text-align: left">
+        <label>Позиция счетчика</label>
+        <div>
+          <label>
+            <span>Center</span>
+            <input v-model="counterPosition" type="radio" value="center">
+          </label>
+        </div>
+        <div>
+          <label>
+            <span>Bottom</span>
+            <input v-model="counterPosition" type="radio" value="bottom">
+          </label>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -63,12 +80,12 @@ export default {
       weight: 5,
       bgColor: '#e5e9f2',
       lineColor: '#f56c6c',
-      visiblePartOfCircle: 30,
+      visiblePartOfCircle: 70,
       maxProgress: 100,
       // animate default linear // 9.
       // animateSpeed // 10.
       // отображать progress // 11.
-      // позиция счетчика (внутри/снизу) // 12.
+      counterPosition: 'center' // 12.
     }
   }
 }
