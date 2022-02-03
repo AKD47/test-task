@@ -3,14 +3,16 @@
     <div class="task1__content">
       <list :list="leftColumnCards"
             @got-to-bottom="loadCards(20)"
-            @move-card="moveToRight"
+            @click-card="moveToRight"
             @show-tooltip="showTooltip"
             @hide-tooltip="hideTooltip"
+            @sort="sortLeft"
             ref="list"/>
       <list :list="rightColumnCards"
-            @move-card="moveToLeft"
+            @click-card="moveToLeft"
             @show-tooltip="showTooltip"
-            @hide-tooltip="hideTooltip"/>
+            @hide-tooltip="hideTooltip"
+            @sort="sortRight"/>
     </div>
     <tooltip ref="tooltip"/>
   </div>
@@ -35,6 +37,12 @@ export default {
     this.loadCards(40)
   },
   methods: {
+    sortLeft() {
+      this.leftColumnCards.sort((a, b) => a.number - b.number)
+    },
+    sortRight() {
+      this.rightColumnCards.sort((a, b) => a.number - b.number)
+    },
     showTooltip({$event, card}) {
       this.$refs.tooltip.show(card)
       this.$refs.tooltip.setPosition($event.target)

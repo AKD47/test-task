@@ -2,7 +2,7 @@
   <div class="list">
     <div class="list__sort-button">
       <button type="button"
-              @click="sortList">Sort</button>
+              @click="$emit('sort', $event)">Sort</button>
     </div>
     <div class="list__content"
          @scroll="handleScroll"
@@ -14,7 +14,7 @@
             @mouseleave="$emit('hide-tooltip', $event)">
           <card :card-data="card"
                 :sss="index"
-                @click.native="clickCard(index)"/>
+                @click.native="$emit('click-card', index)"/>
         </li>
       </ul>
     </div>
@@ -36,16 +36,10 @@ export default {
         $event, card
       })
     },
-    sortList() {
-
-    },
     handleScroll($event) {
       if (this.$refs.listContent.scrollTop + this.$refs.listContent.clientHeight > this.$refs.listContent.scrollHeight - 120) {
         this.$emit('got-to-bottom', $event)
       }
-    },
-    clickCard(index) {
-      this.$emit('move-card', index)
     }
   }
 }
