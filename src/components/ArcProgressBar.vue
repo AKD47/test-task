@@ -29,7 +29,7 @@ export default {
   props: {
     diameter: { type: Number, default: 300 }, // 1.
     progress: { type: Number, default: 70 }, // 2.
-    // maxValue // 3.
+    maxProgress: { type: Number, default: 100 }, // maxValue // 3.
     weight: { type: Number, default: 5 }, // weight // 4. ширина
     bgColor: { type: String, default: '#e5e9f2' },// bgColor // 5.
     lineColor: { type: String, default: '#f56c6c' },// lineColor // 6.
@@ -41,6 +41,13 @@ export default {
     // позиция счетчика (внутри/снизу) // 12.
   },
   computed: {
+    value() {
+      if (this.maxProgress === 100 || this.progress < this.maxProgress) {
+        return this.progress
+      } else {
+        return this.maxProgress
+      }
+    },
     perimeter() {
       return Math.PI * this.diameter
     },
@@ -49,7 +56,7 @@ export default {
       const dashoffset = (offset / 100) * 295
       const dasharray = 295 - (dashoffset * 2)
       return {
-        strokeDasharray: `${dasharray * this.progress / 100}, ${this.perimeter}`,
+        strokeDasharray: `${dasharray * this.value / 100}, ${this.perimeter}`,
         strokeDashoffset: -dashoffset,
         transition: 'stroke-dasharray 0.6s ease 0s, stroke 0.6s ease'
       }

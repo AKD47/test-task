@@ -7,7 +7,8 @@
           :bg-color="bgColor"
           :line-color="lineColor"
           :weight="weight"
-          :visible-part-of-circle="visiblePartOfCircle"/>
+          :visible-part-of-circle="visiblePartOfCircle"
+          :max-progress="maxProgress"/>
     </div>
     <div class="task2__actions">
 
@@ -38,6 +39,11 @@
                          :step="5"
                          :min="30" :max="100"/>
 
+      <base-input-number v-model="maxProgress"
+                         label="Макс. значение прогресса (0-100%)"
+                         :step="5"
+                         :min="0" :max="100"/>
+
     </div>
   </div>
 </template>
@@ -58,6 +64,7 @@ export default {
       bgColor: '#e5e9f2',
       lineColor: '#f56c6c',
       visiblePartOfCircle: 30,
+      maxProgress: 100,
       // animate default linear // 9.
       // animateSpeed // 10.
       // отображать progress // 11.
