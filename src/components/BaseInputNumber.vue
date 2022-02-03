@@ -60,6 +60,7 @@ export default {
   padding: 4px;
 
   > label {
+    margin-bottom: 4px;
     display: block;
     text-align: left;
   }

@@ -15,7 +15,7 @@
     </div>
     <div class="task2__actions">
 
-      <div style="display: flex">
+      <div class="d-flex">
         <base-input-number v-model="progress"
                            label="Значение прогресса (0-100%)"
                            :step="5"
@@ -51,13 +51,13 @@
 
       <div class="task2__radios">
         <label>Позиция счетчика</label>
-        <div>
+        <div class="item">
           <label>
             <span>Center</span>
             <input v-model="counterPosition" type="radio" value="center">
           </label>
         </div>
-        <div>
+        <div class="item">
           <label>
             <span>Bottom</span>
             <input v-model="counterPosition" type="radio" value="bottom">
@@ -112,6 +112,17 @@ export default {
   &__radios {
     text-align: left;
     padding: 4px;
+    > label {
+      display: block;
+      margin-bottom: 4px;
+    }
+    .item {
+      margin-top: 4px;
+      margin-bottom: 4px;
+      span {
+        margin-right: 10px;
+      }
+    }
   }
 
   &__progress-wrapper {
@@ -132,7 +143,7 @@ export default {
 <style lang="scss">
 .task2 {
   .base-input-number {
-    width: 300px;
+    width: 280px;
   }
 }
 </style>
