@@ -52,7 +52,7 @@ export default {
   }
 
   &__description {
-    height: 80px;
+    height: 60px;
     > span {
       font-size: 16px;
       font-weight: 400;

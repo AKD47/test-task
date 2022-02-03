@@ -3,7 +3,7 @@
     <div class="home__content">
       <task-card :image="require('@/assets/images/number-one.png')"
                  title="Задача 1"
-                 description="Контейнеры, подгрузка за скроллом, туллтип, перенос карточки по клику"
+                 description="Контейнеры, infinite scroll, tooltip, перенос карточки по клику"
                  route="/task1"/>
       <task-card :image="require('@/assets/images/number-2.png')"
                  title="Задача 2"
