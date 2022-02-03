@@ -10,7 +10,7 @@ const routes = [
     children: [{
       path: '/task2',
       name: 'task2',
-      component: () => import('@/views/Task2')
+      component: () => import('@/views/task2/Task2')
     }]
   }
 ]
