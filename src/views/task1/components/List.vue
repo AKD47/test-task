@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Card from "@/views/task1/Card";
+import Card from "@/views/task1/components/Card";
 
 export default {
   name: "app",

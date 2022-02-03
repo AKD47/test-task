@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import Tooltip from "./Tooltip";
-import List from "@/views/task1/List";
+import Tooltip from "./components/Tooltip";
+import List from "@/views/task1/components/List";
 
 export default {
   name: "task1",

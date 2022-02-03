@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import TaskCard from "@/views/home/TaskCard";
+import TaskCard from "@/views/home/components/TaskCard";
 
 export default {
   name: 'home',

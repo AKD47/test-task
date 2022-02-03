@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import ArcProgressBar from "@/views/task2/ArcProgressBar";
+import ArcProgressBar from "@/views/task2/components/ArcProgressBar";
 import BaseInput from "@/components/BaseInput";
 import BaseInputNumber from "@/components/BaseInputNumber";
 
