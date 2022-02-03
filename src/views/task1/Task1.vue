@@ -30,7 +30,14 @@ export default {
       totalCardsCount: 10000,
       loadedCardsCount: 0,
       leftColumnCards: [],
-      rightColumnCards: []
+      rightColumnCards: [],
+
+      images: [
+        require('@/assets/images/01.jpg'),
+        require('@/assets/images/02.jpeg'),
+        require('@/assets/images/03.jpeg'),
+        require('@/assets/images/04.jpeg')
+      ]
     }
   },
   mounted() {
@@ -64,6 +71,9 @@ export default {
       this.leftColumnCards.push(card)
       this.$refs.list.handleScroll(null)
     },
+    getRandomImage() {
+      return this.images[Math.round(0 - 0.5 + Math.random() * 4)]
+    },
     loadCards(cardsCount = 20) {
       if (this.loadedCardsCount >= this.totalCardsCount) {
         return
@@ -73,7 +83,7 @@ export default {
 
       for (let i = 0; i < cardsCount; ++i) {
         this.leftColumnCards.push({
-          imageSrc: require("@/assets/images/01.jpg"),
+          imageSrc: this.getRandomImage(),
           number: this.leftColumnCards.length + this.rightColumnCards.length + 1
         })
       }
