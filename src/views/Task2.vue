@@ -15,39 +15,41 @@
     </div>
     <div class="task2__actions">
 
-      <base-input-number v-model="progress"
-                         label="Значение прогресса (0-100%)"
-                         :step="5"
-                         :min="0" :max="100"/>
+      <div style="display: flex">
+        <base-input-number v-model="progress"
+                           label="Значение прогресса (0-100%)"
+                           :step="5"
+                           :min="0" :max="100"/>
+        <base-input-number v-model="diameter"
+                           label="Диаметр (100-400px)"
+                           :step="10"
+                           :min="100" :max="400"/>
+      </div>
 
-      <base-input-number v-model="diameter"
-                         label="Диаметр (50-400px)"
-                         :step="10"
-                         :min="50" :max="400"/>
+      <div class="d-flex">
+        <base-input-number v-model="visiblePartOfCircle"
+                           label="Видимая часть окружности (30-100%)"
+                           :step="5"
+                           :min="30" :max="100"/>
+        <base-input-number v-model="maxProgress"
+                           label="Макс. значение прогресса (0-100%)"
+                           :step="5"
+                           :min="0" :max="100"/>
+      </div>
 
       <base-input-number v-model="weight"
-                         label="Ширина линии (1-7)"
+                         label="Ширина линии (1-6)"
                          :step="0.5"
-                         :min="1" :max="7"/>
+                         :min="1" :max="6"/>
 
-      <base-input v-model="bgColor"
-                  label="Цвет фоновой линии"/>
+      <div class="d-flex">
+        <base-input v-model="bgColor"
+                    label="Цвет фоновой линии"/>
+        <base-input v-model="lineColor"
+                    label="Цвет линии прогресса"/>
+      </div>
 
-      <base-input v-model="lineColor"
-                  label="Цвет линии прогресса"/>
-
-
-      <base-input-number v-model="visiblePartOfCircle"
-                         label="Видимая часть окружности (30-100%)"
-                         :step="5"
-                         :min="30" :max="100"/>
-
-      <base-input-number v-model="maxProgress"
-                         label="Макс. значение прогресса (0-100%)"
-                         :step="5"
-                         :min="0" :max="100"/>
-
-      <div style="text-align: left">
+      <div class="task2__radios">
         <label>Позиция счетчика</label>
         <div>
           <label>
@@ -63,11 +65,12 @@
         </div>
       </div>
 
-      <base-input v-model="transitionSpeed"
-                  label="Скорость анимации"/>
-
-      <base-input v-model="transitionTimingFunction"
-                  label="Функция анимации"/>
+      <div class="d-flex">
+        <base-input v-model="transitionSpeed"
+                    label="Скорость анимации"/>
+        <base-input v-model="transitionTimingFunction"
+                    label="Функция анимации"/>
+      </div>
 
     </div>
   </div>
@@ -99,8 +102,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.task2 {
+.d-flex {
   display: flex;
+}
+.task2 {
+  padding: 20px;
+  display: flex;
+
+  &__radios {
+    text-align: left;
+    padding: 4px;
+  }
 
   &__progress-wrapper {
     display: flex;
@@ -114,5 +126,13 @@ export default {
     width: 50%;
   }
 
+}
+</style>
+
+<style lang="scss">
+.task2 {
+  .base-input-number {
+    width: 300px;
+  }
 }
 </style>
