@@ -2,11 +2,11 @@
   <div class="home">
     <div class="home__content">
       <task-card :image="require('@/assets/images/number-one.png')"
-                 title="Задача 1"
+                 title="Контейнеры"
                  description="Контейнеры, infinite scroll, tooltip, перенос карточки по клику"
                  route="/task1"/>
       <task-card :image="require('@/assets/images/number-2.png')"
-                 title="Задача 2"
+                 title="Arc Progress Bar"
                  description="Круговой прогресс с различными параметрами"
                  route="/task2"/>
     </div>
